@@ -1,7 +1,10 @@
 class Bookmark < ApplicationRecord
-  validates :comment, presence: true, length: { minimum: 7 }
-  validates :comment, uniqueness: { case_sensitive: false }
+  belongs_to :movie
+  belongs_to :list
 
-  belongs_to :movies
-  belongs_to :lists
+  # Un film peut être dans plusieurs list mais unique dans une liste
+  validates :movie, uniqueness: { scope: :list }
+  validates :comment, presence: true, length: { minimum: 6 }
+  # validates :comment, uniqueness: true
+
 end
