@@ -52,6 +52,10 @@ gem "font-awesome-sass", "~> 6.1"
 gem "simple_form"
 gem "sassc-rails"
 
+# installation PYM
+gem 'pry-rails'
+gem 'better_errors'
+gem 'binding_of_caller'
 
 
 group :development, :test do

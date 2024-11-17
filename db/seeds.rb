@@ -412,3 +412,37 @@ moviesdb = [
 moviesdb.each do |movie|
   Movie.create(title: movie[:original_title], overview: movie[:overview], poster_url: "https://image.tmdb.org/t/p/w500/#{movie[:poster_path]}", rating: movie[:vote_average].round(1))
 end
+
+listsdb = [
+  {
+    "name": "Action / aventure"
+  },
+  {
+    "name": "Animation"
+  },
+  {
+    "name": "Comedie"
+  },
+  {
+    "name": "Documentaire"
+  },
+  {
+    "name": "Drame"
+  },
+  {
+    "name": "Fantastique"
+  },
+  {
+    "name": "Horreur"
+  },
+  {
+    "name": "Science-fiction"
+  },
+  {
+    "name": "Musical"
+  }
+]
+
+listsdb.each do |list|
+  List.create(name: list[:name])
+end

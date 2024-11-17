@@ -1,2 +1,44 @@
 // Import page-specific CSS files here.
 @import "home";
+
+// #060609 haut
+// #1A1D29 bas
+
+body {
+  background-image: linear-gradient(to bottom, #060609, #1A1D29);
+  height: 100vh; /* Pour s'assurer que le dégradé couvre toute la hauteur de la fenêtre */
+  margin: 0;
+}
+
+h1 {
+  font-weight: bolder;
+  text-shadow: 3px 3px 5px black;
+}
+
+h2 {
+  text-shadow: 3px 3px 5px black;
+}
+
+.banner {
+  position: relative;
+
+}
+
+.container {
+  position: relative;
+  color: white;
+  padding-top: 2%;
+  z-index: 2;
+}
+
+#cardlist {
+  .card {
+    background-color: #2E303C;
+    color : white;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+  }
+  .card-title {
+    margin: 0;
+  }
+}
+// #2E303C

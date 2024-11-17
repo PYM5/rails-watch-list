@@ -6,6 +6,7 @@ class ListsController < ApplicationController
   end
 
   def new
+    @lists = List.all
     @list = List.new
   end
 
@@ -15,12 +16,14 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    # binding.pry
     if @list.save
-      flash[:notice] = 'List created successfully.'
-      redirect_to list_path(@list)
+      @lists = List.all
+      redirect_to new_list_path, notice: "List successfully created!"
     else
-      flash[:alert] = 'Failed to create the list.'
-      render :new, status: :unprocessable_entity
+      @lists = List.all
+      flash.now[:alert] = "Failed to create list. Please fix the errors below."
+      render :new
     end
   end
 
