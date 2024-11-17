@@ -1,1 +1,38 @@
-<h1>Show List</h1>
+<%# <%= render "banner", form_title: @form_title, form_subtitle: @form_subtitle %> %>
+<%= render "navbar" %>
+<%= render "banner" %>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <%= button_to "Delete", list_path(@list), method: :delete, class: "btn btn-danger", form: { id: "deleteForm" } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%# SHOW ======c===============================================%>
+<div class="container">
+  <div class="form-group">
+    <label for="list_name">Name of the list</label>
+    <input type="text" class="form-control" value="<%= @list.name %>" disabled>
+  </div>
+</div>
+
+<div class="container form-group mt-3 mb-5 pt-0">
+  <%= link_to @clabel, @cpath, class: "btn btn-secondary" %>
+  <%= link_to "Edit", edit_list_path(@list), class: "btn btn-primary" %>
+  <%# <%= link_to "Delete", list_path(@list), data: {turbo_method: "delete", turbo_confirm: "are you sure ?"}, class: "btn btn-danger" %>
+  <%= link_to "Delete", "#", class: "btn btn-danger text-white", data: { bs_toggle: "modal", bs_target: "#deleteModal" } %>
+</div>

@@ -1,0 +1,18 @@
+
+<%# FORM NEW / EDIT ======c===============================================%>
+<div class="container">
+<%= simple_form_for(@list) do |f| %>
+  <div class="form-group">
+    <%= f.input :name, label: 'Name of the list' %>
+  </div>
+
+  <div class="form-group">
+    <%= render 'shared/errors', object: f.object %>  <!-- Affiche les erreurs si présentes -->
+  </div>
+
+  <div class="form-group">
+    <%= link_to @clabel, @cpath, class: "btn btn-secondary" %>
+    <%= f.button :submit, @vlabel, class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

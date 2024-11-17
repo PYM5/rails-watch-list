@@ -1,29 +1,53 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :destroy]
+  before_action :set_list, only: [:show, :destroy, :edit, :update]
 
   def index
     @lists = List.all
   end
 
   def new
-    @lists = List.all
+    @form_title = "Create a new list"
+    @form_subtitle = "for your favorite movies"
+    @vlabel = "Add"
+    @clabel = "Cancel"
+    @cpath = lists_path
     @list = List.new
   end
 
   def show
-    @bookmarks = @list.bookmarks.includes(:movie)
+    @form_title = "View a list"
+    @form_subtitle = "of your favorite movies"
+    @clabel = "Cancel"
+    @cpath = lists_path
   end
 
   def create
     @list = List.new(list_params)
-    # binding.pry
     if @list.save
-      @lists = List.all
-      redirect_to new_list_path, notice: "List successfully created!"
+      flash[:notice] = 'Success'
+      redirect_to lists_path
     else
       @lists = List.all
-      flash.now[:alert] = "Failed to create list. Please fix the errors below."
-      render :new
+      flash.now[:alert] = "Failed".capitalize
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @form_title = "Modify your list"
+    @form_subtitle = "of your favorite movies"
+    @vlabel = "Modify"
+    @clabel = "Cancel"
+    @cpath = lists_path
+  end
+
+  def update
+    if @list.update(list_params)
+      flash[:notice] = 'Success'
+      redirect_to list_path(@list)
+    else
+      flash[:alert] = 'Failed'
+      render :new, status: :unprocessable_entity
     end
   end
 
